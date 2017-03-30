@@ -22,6 +22,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.textLabel?.text = items[indexPath.row]
         return cell
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete{
+            items.remove(at: indexPath.row)
+            toDoDisplay.reloadData()
+            UserDefaults.standard.set(items, forKey: "items")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

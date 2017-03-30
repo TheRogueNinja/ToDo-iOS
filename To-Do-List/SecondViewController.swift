@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var inputTask: UITextField!
     
@@ -27,6 +27,10 @@ class SecondViewController: UIViewController {
         }
         inputTask.text=""
         UserDefaults.standard.set(items, forKey: "items")
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        inputTask.resignFirstResponder()
+        return true
     }
     override func viewDidLoad() {
         super.viewDidLoad()

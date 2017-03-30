@@ -13,7 +13,20 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var inputTask: UITextField!
     
     @IBAction func saveTask(_ sender: Any) {
+        let itemObjects = UserDefaults.standard.object(forKey: "items")
+        print(itemObjects)
+        var items:[String]
         
+        if let checkObjects = itemObjects as? [String]{
+            items = checkObjects
+            items.append(inputTask.text!)
+        
+        }
+        else{
+            items = [inputTask.text!]
+        }
+        inputTask.text=""
+        UserDefaults.standard.set(items, forKey: "items")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
